@@ -500,6 +500,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    Запрос 8
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -592,6 +599,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    Запрос 8
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -649,6 +663,15 @@ db.waybill.find({&quot;driver.$id&quot;: driver_id, &quot;mileage_total&quot;: {
       $group: { _id: &quot;$driver&quot;, avg: { $avg: &quot;$mileage_total&quot; } }
     }
   ]
+)
+</code></pre>
+<p><img alt="" src="../7.png" /></p>
+<h2 id="8">Запрос 8</h2>
+<p>Сгруппировать по количеству опыта всех водителей</p>
+<pre><code>db.drivers.mapReduce(
+        function() {emit(this.exp, this.name);}, 
+        function(key, values) {return values.join();}, 
+        {out: {inline: 1}}
 )
 </code></pre>
 <p><img alt="" src="../7.png" /></p>
